@@ -7,8 +7,8 @@
 	<style>
 	body{
 	font-family: system-ui, sans-serif;
-	
 	}
+
 	h1 {
 		display: inline;
 		box-decoration-break: clone;
@@ -17,17 +17,53 @@
 		padding: 0 4px; 
 	}
 
+
+	#moodBoard {
+		display: flex;
+		width: 350px;
+		flex-wrap: wrap;
+		text-align: center;
+		color: #fff;
+		line-height: 8em;
+	}
+
+	.moodSquare {
+		height: 150px;
+		width: 150px;
+		border: 2px solid #000;
+		font-size: 1.5em;
+		text-align: center:
+		color: #fff;
+	}
+
 	</style>	
 	</head>
 	<body>
 		<h1>in the workshop</h1>
-		<p>hi world.</p>
-		<p>content free.</p>
-		<p id="sayingBox">
+
+		<div id="greatingBox">hi world.</div>
+		
+		<div id="corp">content free.</div>
+
+		<div id="sayingBox">
 		"If it doesn't contradict itself it can't be true."
-		</p>
+		</div>
+		<div id="moodBoard">
+
+		<div id="moodA" class="moodSquare"></div>
+		<div id="moodB" class="moodSquare"></div>
+		<div id="moodC" class="moodSquare"></div>
+		<div id="moodD" class="moodSquare"></div>
+
+		</div>
+		<button onclick="generateBoard()">generate mood board</button>
 
 		<script>
+// random greating
+
+// random corp shiz
+
+// random saying
 		let sayingBox = document.getElementById("sayingBox");
 
 		let sayings = [ 
@@ -48,7 +84,44 @@
 				let num = Math.floor(Math.random() * list);
 				sayingBox.innerText = sayings[num]; 
 				}
+	//mood board
 
+		let moodA = document.getElementById('moodA');
+		let moodB = document.getElementById('moodB');
+		let moodC = document.getElementById('moodC');  
+		let moodD = document.getElementById('moodD');
+		moodArray = [ moodA, moodB, moodC, moodD ];
+
+		let wordsA = [ 'some', 'these', 'while', 'if', 'as', 'how', 'why', 'what', 'where', 'such', 'when', 'my', 'your', 'her', 'his', '10' ]
+		let wordsB = [ 'red', 'pale', 'tense', 'bold', 'perfect', 'loose', 'flavoured', 'wild', 'simple', 'elusive', 'beautiful', 'coastal', 'vile', 'dainty', 'tired', 'sequential']
+		let wordsC = [ 'lemons', 'accusations', 'diamonds', 'children', 'visions', 'fixtures', 'apparitions', 'notions', 'dreams', 'storm clouds', 'animals', 'cities', 'mysteries', 'fingers', 'excuses', 'numbers']
+		let wordsD = [ 'grow', 'exist', 'fail', 'flew', 'diminish', 'engage', 'appear', 'die', 'collide', 'threaten', 'coagulate', 'thrive', 'belong', 'tickle', 'disappoint', 'return']
+
+		const generateBoard = () => {
+						
+	for(i=0; i < moodArray.length; i++){
+	randomColor = '#' + (Math.random() * 0xFFFFFF << 0).toString(16).padStart(6,'0');
+		moodArray[i].style.backgroundColor = randomColor;
+
+					if(moodArray[i] == moodA){
+					let num = Math.floor(Math.random() * wordsA.length);
+					moodArray[i].innerText = wordsA[num];
+							}else if(moodArray[i] == moodB){
+					let num = Math.floor(Math.random() * wordsB.length);
+					moodArray[i].innerText = wordsB[num];
+							}else if(moodArray[i] == moodC){
+
+					let num = Math.floor(Math.random() * wordsC.length);
+					moodArray[i].innerText = wordsC[num];
+							}else{
+
+					let num = Math.floor(Math.random() * wordsD.length);
+					moodArray[i].innerText = wordsD[num];
+							}
+
+					};
+		 };
+			
 	</script>
 	</body>
 </html>
