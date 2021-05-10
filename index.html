@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<title>so post beat</title>
+	<style>
+	body{
+	font-family: system-ui, sans-serif;
+	
+	}
+	h1 {
+		display: inline;
+		box-decoration-break: clone;
+		background-color: #000;
+		color: #fff;
+		padding: 0 4px; 
+	}
+
+	</style>	
+	</head>
+	<body>
+		<h1>in the workshop</h1>
+		<p>hi world.</p>
+		<p>content free.</p>
+		<p id="sayingBox">
+		"If it doesn't contradict itself it can't be true."
+		</p>
+
+		<script>
+		let sayingBox = document.getElementById("sayingBox");
+
+		let sayings = [ 
+			"why is a question, a very short question, it applies to everything.",
+			"if it doesn't contradict itself it can't be true.",
+			"seldom stand, seldom fall.",
+			"the late worm misses all the birds.",
+			"if it ain't broke, break it.",
+			"we are always moving furniture",
+			"if it can't be done laying down it's not worth doing.",
+			"they'll come to us all",
+			"you don't need a code abode"
+			]
+
+		let list = sayings.length;
+
+		window.onload = grabSaying = () => {
+				let num = Math.floor(Math.random() * list);
+				sayingBox.innerText = sayings[num]; 
+				}
+
+	</script>
+	</body>
+</html>
