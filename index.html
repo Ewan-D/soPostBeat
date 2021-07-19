@@ -36,6 +36,14 @@
 		color: #fff;
 	}
 
+	 #droneBox{
+		 padding-top: 1em;
+	 }
+
+	 .vol {
+		 visibility: hidden;
+	 }
+
 	</style>	
 	</head>
 	<body>
@@ -58,7 +66,35 @@
 		</div>
 		<button onclick="generateBoard()">generate mood board</button>
 
+		<div id="droneBox">
+
+			<audio src="side_b.mp3"></audio>
+
+			<button data-playing="false" class="onOff" role="switch">
+				<span>start/stop</span>
+			</button>
+
+			<input class="vol" type="range" min="0" max="2" value="1" step="0.1"/>
+		</div>
 		<script>
+
+// audio stuff here using the web audio api
+// instigate audio context
+		 const AudioContext = window.AudioContext || window.webAudioContext;
+// load in track
+
+		 const audioElement = document.querySelector('audio');
+		 const playButton = document.querySelector('.onOff');
+
+		 playButton.addEventListener('click', function() {
+			 if (this.dataset.playing === 'false'){
+				 audioElement.play();
+				 this.dataset.playing = 'true';
+			 } else if (this.dataset.playing === 'true') {
+				 audioElement.pause();
+				 this.dataset.playing = 'false';
+			 }
+		 }, false)
 // random greating
 
 // random corp shiz
