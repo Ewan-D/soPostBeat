@@ -4,58 +4,16 @@
 		<meta charset="UTF-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<title>so post beat</title>
-	<style>
-	body{
-	font-family: system-ui, sans-serif;
-	}
-
-	h1 {
-		display: inline;
-		box-decoration-break: clone;
-		background-color: #000;
-		color: #fff;
-		padding: 0 4px; 
-	}
-
-
-	#moodBoard {
-		display: flex;
-		width: 350px;
-		flex-wrap: wrap;
-		text-align: center;
-		color: #fff;
-		line-height: 8em;
-	}
-
-	.moodSquare {
-		height: 150px;
-		width: 150px;
-		border: 2px solid #000;
-		font-size: 1.5em;
-		text-align: center:
-		color: #fff;
-	}
-
-	 #droneBox{
-		 padding-top: 1em;
-	 }
-
-	 .vol {
-		 visibility: hidden;
-	 }
-
-	</style>	
+	<link rel="stylesheet" type="text/css" href="style.css"/>
 	</head>
 	<body>
-		<h1>in the workshop</h1>
-
-		<div id="greatingBox">hi world.</div>
-		
-		<div id="corp">content free.</div>
+		<div class="heading">
+		<h1>In the Workshop</h1>
+		</div>
 
 		<div id="sayingBox">
-		"If it doesn't contradict itself it can't be true."
 		</div>
+
 		<div id="moodBoard">
 
 		<div id="moodA" class="moodSquare"></div>
@@ -64,100 +22,30 @@
 		<div id="moodD" class="moodSquare"></div>
 
 		</div>
-		<button onclick="generateBoard()">generate mood board</button>
+
+		<div class="words">
+			<button onclick="generateBoard()">Generate mood board</button>
+
+			<input class="vol" type="range" min="0" max="2" value="1" step="0.1"/>
+			</div>
+		</div>
+
+		<div class="chords">
+			<button class="createChords" onclick="createChords()">Generate Chord Sequance</button>
+			<div id="chordBox">
+
+			</div>
+		</div>
 
 		<div id="droneBox">
-
 			<audio src="side_b.mp3"></audio>
 
 			<button data-playing="false" class="onOff" role="switch">
-				<span>start/stop</span>
+				<span>Play/Pause</span>
 			</button>
 
-			<input class="vol" type="range" min="0" max="2" value="1" step="0.1"/>
 		</div>
-		<script>
 
-// audio stuff here using the web audio api
-// instigate audio context
-		 const AudioContext = window.AudioContext || window.webAudioContext;
-// load in track
-
-		 const audioElement = document.querySelector('audio');
-		 const playButton = document.querySelector('.onOff');
-
-		 playButton.addEventListener('click', function() {
-			 if (this.dataset.playing === 'false'){
-				 audioElement.play();
-				 this.dataset.playing = 'true';
-			 } else if (this.dataset.playing === 'true') {
-				 audioElement.pause();
-				 this.dataset.playing = 'false';
-			 }
-		 }, false)
-// random greating
-
-// random corp shiz
-
-// random saying
-		let sayingBox = document.getElementById("sayingBox");
-
-		let sayings = [ 
-			"why is a question, a very short question, it applies to everything.",
-			"if it doesn't contradict itself it can't be true.",
-			"seldom stand, seldom fall.",
-			"the late worm misses all the birds.",
-			"if it ain't broke, break it.",
-			"we are always moving furniture",
-			"if it can't be done laying down it's not worth doing.",
-			"they'll come to us all",
-			"you don't need a code abode"
-			]
-
-		let list = sayings.length;
-
-		window.onload = grabSaying = () => {
-				let num = Math.floor(Math.random() * list);
-				sayingBox.innerText = sayings[num]; 
-				}
-	//mood board
-
-		let moodA = document.getElementById('moodA');
-		let moodB = document.getElementById('moodB');
-		let moodC = document.getElementById('moodC');  
-		let moodD = document.getElementById('moodD');
-		moodArray = [ moodA, moodB, moodC, moodD ];
-
-		let wordsA = [ 'some', 'these', 'while', 'if', 'as', 'how', 'why', 'what', 'where', 'such', 'when', 'my', 'your', 'her', 'his', '10' ]
-		let wordsB = [ 'red', 'pale', 'tense', 'bold', 'perfect', 'loose', 'flavoured', 'wild', 'simple', 'elusive', 'beautiful', 'coastal', 'vile', 'dainty', 'tired', 'sequential']
-		let wordsC = [ 'lemons', 'accusations', 'diamonds', 'children', 'visions', 'fixtures', 'apparitions', 'notions', 'dreams', 'storm clouds', 'animals', 'cities', 'mysteries', 'fingers', 'excuses', 'numbers']
-		let wordsD = [ 'grow', 'exist', 'fail', 'flew', 'diminish', 'engage', 'appear', 'die', 'collide', 'threaten', 'coagulate', 'thrive', 'belong', 'tickle', 'disappoint', 'return']
-
-		const generateBoard = () => {
-						
-	for(i=0; i < moodArray.length; i++){
-	randomColor = '#' + (Math.random() * 0xFFFFFF << 0).toString(16).padStart(6,'0');
-		moodArray[i].style.backgroundColor = randomColor;
-
-					if(moodArray[i] == moodA){
-					let num = Math.floor(Math.random() * wordsA.length);
-					moodArray[i].innerText = wordsA[num];
-							}else if(moodArray[i] == moodB){
-					let num = Math.floor(Math.random() * wordsB.length);
-					moodArray[i].innerText = wordsB[num];
-							}else if(moodArray[i] == moodC){
-
-					let num = Math.floor(Math.random() * wordsC.length);
-					moodArray[i].innerText = wordsC[num];
-							}else{
-
-					let num = Math.floor(Math.random() * wordsD.length);
-					moodArray[i].innerText = wordsD[num];
-							}
-
-					};
-		 };
-			
-	</script>
+		<script src="postBeat.js"></script>
 	</body>
 </html>
